@@ -77,48 +77,50 @@ cyber-shadow-twin/
 │
 └── README.md
 ```
-Technologies Used
-Frontend
-HTML5
-CSS3
-JavaScript
-D3.js / network visualization components
-Backend
-Java
-Java HTTP Server
-REST-style API endpoints
-Server-Sent Events (SSE)
-Database
-MySQL
-MySQL Connector/J
-AI
-Google Gemini API
-Development Tools
-IntelliJ IDEA
-Visual Studio Code
-MySQL Workbench
-Security Components
-Threat Detection
+## Technologies Used
+-Frontend
+  -HTML5
+  -CSS3
+  -JavaScript
+  -D3.js / network visualization components
+-Backend
+  -Java
+  -Java HTTP Server
+  -REST-style API endpoints
+  -Server-Sent Events (SSE)
+-Database
+  -MySQL
+  -MySQL Connector/J
+  -AI
+  -Google Gemini API
+-Development Tools
+  -IntelliJ IDEA
+  -Visual Studio Code
+  -MySQL Workbench
+  
+## Security Components
+
+-Threat Detection
 
 The system analyzes incoming security-related activity and identifies suspicious or potentially malicious behavior.
 
-Sandbox
+-Sandbox
 
 The Sandbox provides an isolated environment for simulating security events and observing how the monitoring and response mechanisms behave.
 
-Honeypot
+-Honeypot
 
 The platform includes a honeypot mechanism designed to detect unauthorized access attempts against protected resources and generate security alerts.
 
-Active Threat Isolation
+-Active Threat Isolation
 
 Detected threats can be isolated through the system's response mechanism, allowing the administrator to contain a simulated attacker and generate forensic information.
 
-Risk Assessment
+-Risk Assessment
 
 Security events contribute to the platform's threat/risk monitoring and visualization system, helping administrators identify potentially dangerous activity.
 
-AI-Assisted Analysis
+-AI-Assisted Analysis
 
 Cyber Shadow Twin integrates the Google Gemini API for AI-assisted security analysis.
 
@@ -126,13 +128,13 @@ The AI component can analyze security-related input and provide contextual threa
 
 API keys and database credentials are intentionally excluded from this repository.
 
-Database
+## Database
 
 The application uses MySQL for persistent storage of application and security-related information.
 
 Database credentials are stored locally through configuration and are not included in this repository.
 
-Running the Project
+# Running the Project
 1. Configure MySQL
 
 Create the required MySQL database and configure the local database credentials in the application's configuration file.
@@ -153,26 +155,26 @@ Open the frontend files using a local web server such as VS Code Live Server.
 
 Open the frontend login page in a browser and authenticate using the configured application account.
 
-Security Notice
+# Security Notice
 
 This repository does not contain production credentials, API keys, database passwords, or private configuration files.
 
 Before deploying the system publicly, replace all local development credentials with secure environment-based configuration.
 
-Project Status
+# Project Status
 
 This project was developed as a cybersecurity minor project demonstrating:
 
-Cybersecurity monitoring
-Threat detection
-Security event analysis
-AI-assisted security analysis
-Honeypot defense
-Threat containment
-Network visualization
-Security reporting
+-Cybersecurity monitoring
+-Threat detection
+-Security event analysis
+-AI-assisted security analysis
+-Honeypot defense
+-Threat containment
+-Network visualization
+-Security reporting
 
-Author:-
+## Author:-
 Muggiji412
 
 Cyber Shadow Twin — AI-Powered Cybersecurity Monitoring Platform
