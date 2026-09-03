@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sandbox Simulation</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .sandbox-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .sandbox-container { 
+            width: 100%;
+            max-width: 800px; 
+            background: #0d0d0d; 
+            padding: 40px; 
+            border-radius: 24px; 
+            border: 1px solid #1e1e1e; 
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.02);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sandbox-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #1e1e1e;
+            padding-bottom: 20px;
+        }
+
+        .sandbox-header h2 {
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        .back-btn {
+            padding: 10px 20px;
+            background: transparent;
+            color: #9a9a9a;
+            border: 1px solid #333;
+            border-radius: 999px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #1a1a1a;
+            color: white;
+            border-color: #555;
+        }
+
+        .sandbox-desc {
+            color: #8d8d8d;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        .chat-box { 
+            height: 400px; 
+            overflow-y: auto; 
+            background: #050505; 
+            padding: 20px; 
+            border-radius: 16px;
+            border: 1px solid #1e1e1e;
+            margin-bottom: 20px; 
+            font-family: "Consolas", monospace;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* Scrollbar for chat box */
+        .chat-box::-webkit-scrollbar { width: 8px; }
+        .chat-box::-webkit-scrollbar-track { background: #050505; }
+        .chat-box::-webkit-scrollbar-thumb { background: #222; border-radius: 4px; }
+        .chat-box::-webkit-scrollbar-thumb:hover { background: #444; }
+
+        .message { 
+            padding: 14px 18px;
+            border-radius: 12px;
+            max-width: 80%;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+        .user { 
+            background: #111;
+            color: #ccc; 
+            align-self: flex-end;
+            border: 1px solid #222;
+            border-bottom-right-radius: 4px;
+        }
+
+        .twin { 
+            background: rgba(0, 255, 200, 0.05); 
+            color: #00ffc8; 
+            align-self: flex-start;
+            border: 1px solid rgba(0, 255, 200, 0.2);
+            border-bottom-left-radius: 4px;
+        }
+
+        .sys-error {
+            background: rgba(255, 0, 0, 0.05);
+            color: #ff5c5c;
+            align-self: center;
+            border: 1px solid rgba(255, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .input-group { 
+            display: flex; 
+            gap: 15px; 
+        }
+
+        input { 
+            flex: 1; 
+            padding: 16px 20px; 
+            background: #050505; 
+            color: white; 
+            border: 1px solid #222; 
+            border-radius: 14px;
+            font-size: 16px;
+            font-family: inherit;
+            transition: 0.3s;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #555;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+        }
+
+        button.send-btn { 
+            padding: 0 30px; 
+            background: white; 
+            color: black; 
+            border: none; 
+            border-radius: 14px;
+            cursor: pointer; 
+            font-weight: 700;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        button.send-btn:hover { 
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="sandbox-wrapper">
+        <div class="sandbox-container">
+            <div class="sandbox-header">
+                <h2>🛠 Sandbox Simulation</h2>
+                <a href="dashboard.html" class="back-btn">← Back to Dashboard</a>
+            </div>
+            
+            <p class="sandbox-desc">
+                Welcome to the isolated testing environment. Send normal messages or simulate threat keywords (like <code>'hack'</code>, <code>'ddos'</code>, <code>'failed login'</code>, <code>'sql injection'</code>) to see how the Shadow Twin reacts. Triggered events will immediately log to the database and reflect on your live Dashboard feed.
+            </p>
+            
+            <div class="chat-box" id="chatBox">
+                <div class="message twin">System Ready: Welcome to the Sandbox Environment. Waiting for input...</div>
+            </div>
+            
+            <div class="input-group">
+                <input type="text" id="simInput" placeholder="Type a message or threat keyword here..." autocomplete="off">
+                <button class="send-btn" onclick="simulateMsg()">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function simulateMsg() {
+            const input = document.getElementById("simInput");
+            const msg = input.value.trim();
+            if(!msg) return;
+            
+            const chatBox = document.getElementById("chatBox");
+            chatBox.innerHTML += `<div class="message user">You: ${msg}</div>`;
+            input.value = "";
+            chatBox.scrollTop = chatBox.scrollHeight;
+            
+            fetch("http://localhost:8080/api/simulate?msg=" + encodeURIComponent(msg), { headers: { "Authorization": "Bearer " + sessionStorage.getItem("authToken") } })
+                .then(res => res.json())
+                .then(data => {
+                    const badgeColor = data.riskLevel === 'HIGH' ? '#ff5c5c' : (data.riskLevel === 'MEDIUM' ? '#ffc107' : '#00ffc8');
+                    chatBox.innerHTML += `<div class="message twin">
+                        <div style="font-size:11px; margin-bottom:4px; font-weight:bold; color:${badgeColor}">[${data.riskLevel || 'LOW'} RISK • ${data.classification || 'Normal'}]</div>
+                        Twin: ${data.reply}
+                    </div>`;
+                    chatBox.scrollTop = chatBox.scrollHeight;
+                })
+                .catch(err => {
+                    chatBox.innerHTML += `<div class="message sys-error">Error: Backend API unreachable. Make sure ShadowTwinUI.java is running.</div>`;
+                    chatBox.scrollTop = chatBox.scrollHeight;
+                });
+        }
+        
+        document.getElementById("simInput").addEventListener("keypress", function(e) {
+            if(e.key === "Enter") simulateMsg();
+        });
+    </script>
+</body>
+</html>

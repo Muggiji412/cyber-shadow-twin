@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Cyber Shadow Twin</title>
+
+    <link rel="stylesheet"
+          href="style.css">
+
+</head>
+
+<body>
+  
+
+<section class="hero">
+
+    <canvas id="upguardGrid"></canvas>
+
+    <div class="hero-left">
+
+        <div class="badge">
+            SECURITY OPERATIONS PLATFORM
+        </div>
+
+        <h1 id="animatedHeading">
+            Detect Threats.
+        </h1>
+
+        <p>
+            Continuous monitoring of authentication activity,
+            anomaly detection, security analytics and
+            incident reporting.
+        </p>
+
+        <div class="hero-buttons">
+
+            <button
+                    class="primary-btn"
+                    onclick="focusLogin()">
+                Access Platform
+            </button>
+
+            <button
+                    class="secondary-btn"
+                    onclick="learnMore()">
+                Learn More
+            </button>
+
+        </div>
+
+        <div class="mini-feed">
+
+            <p>● Authentication Monitoring Active</p>
+
+            <p>● Threat Intelligence Synced</p>
+
+            <p>● Security Analytics Running</p>
+
+            <p>● Incident Reporting Ready</p>
+
+        </div>
+
+    </div>
+
+    <div class="login-panel">
+
+        <h2>
+            Welcome Back
+        </h2>
+
+        <p>
+            Sign in to access your security dashboard.
+        </p>
+
+        <input
+        id="username"
+        type="text"
+        placeholder="Username">
+
+<input
+        id="password"
+        type="password"
+        placeholder="Password">
+
+<p id="loginError"></p>
+
+<button onclick="login()">
+    Sign In
+</button>
+
+    </div>
+
+</section>
+
+<section
+        id="aboutSection"
+        class="features">
+
+    <h2>
+        Platform Capabilities
+    </h2>
+
+    <div class="feature-grid">
+
+        <div class="feature-card">
+
+            <h3>
+                Threat Detection
+            </h3>
+
+            <p>
+                Detect suspicious activity before incidents occur.
+            </p>
+
+        </div>
+
+        <div class="feature-card">
+
+            <h3>
+                Anomaly Monitoring
+            </h3>
+
+            <p>
+                Identify unusual login behavior automatically.
+            </p>
+
+        </div>
+
+        <div class="feature-card">
+
+            <h3>
+                Security Analytics
+            </h3>
+
+            <p>
+                Transform raw events into meaningful insights.
+            </p>
+
+        </div>
+
+        <div class="feature-card">
+
+            <h3>
+                Incident Reporting
+            </h3>
+
+            <p>
+                Export and analyze security investigations.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<script src="login.js"></script>
+<script src="upguard-grid.js"></script>
+
+</body>
+</html>
