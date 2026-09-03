@@ -171,20 +171,8 @@ Honeypot defense
 Threat containment
 Network visualization
 Security reporting
-Author
 
+Author:-
 Muggiji412
 
 Cyber Shadow Twin — AI-Powered Cybersecurity Monitoring Platform
-
-
-### Step 2 — Commit it
-
-At the bottom:
-
-**Commit changes**
-
-Use:
-
-```text
-Improve project README
