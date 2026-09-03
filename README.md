@@ -134,7 +134,7 @@ The application uses MySQL for persistent storage of application and security-re
 
 Database credentials are stored locally through configuration and are not included in this repository.
 
-# Running the Project
+## Running the Project
 1. Configure MySQL
 
 Create the required MySQL database and configure the local database credentials in the application's configuration file.
@@ -155,13 +155,13 @@ Open the frontend files using a local web server such as VS Code Live Server.
 
 Open the frontend login page in a browser and authenticate using the configured application account.
 
-# Security Notice
+## Security Notice
 
 This repository does not contain production credentials, API keys, database passwords, or private configuration files.
 
 Before deploying the system publicly, replace all local development credentials with secure environment-based configuration.
 
-# Project Status
+## Project Status
 
 This project was developed as a cybersecurity minor project demonstrating:
 
@@ -174,7 +174,7 @@ This project was developed as a cybersecurity minor project demonstrating:
 -Network visualization
 -Security reporting
 
-## Author:-
+# Author:-
 Muggiji412
 
 Cyber Shadow Twin — AI-Powered Cybersecurity Monitoring Platform
